@@ -1,0 +1,79 @@
+body {
+  padding-top: 50px;
+  background:#333;
+}
+
+.add_widget {
+    cursor:pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    padding:15px 0;
+}
+
+.add_widget:hover {
+    background-color: #444;
+}
+
+.add_widget:active {
+    background-color: #222;
+}
+
+.gridster {
+    float:left;
+    min-height:50px;
+    margin:10px 0px;
+    width:226px;
+}
+
+.label {
+    font-size:110%;
+    min-height:20px;
+}
+
+.gridster ul {
+    list-style: none;
+}
+
+.gridster ul li {
+    cursor:move;
+    background:#aaa;
+    overflow:hidden;
+    padding:5px;
+}
+
+.gridster.stop ul li {
+    background:#e74c3c;
+}
+.gridster.stop {
+    border: 1px dotted #e74c3c;
+}
+
+.gridster.start ul li {
+    background:#2ecc71;
+}
+.gridster.start {
+    border: 1px dotted #2ecc71;
+}
+
+.gridster.keep ul li {
+    background:#3498db;
+}
+.gridster.keep {
+    border: 1px dotted #3498db;
+}
+
+.gridster.more ul li {
+    background:#9b59b6;
+}
+.gridster.more {
+    border: 1px dotted #9b59b6;
+}
+
+.gridster.less ul li {
+    background:#f1c40f;
+}
+.gridster.less {
+    border: 1px dotted #f1c40f;
+}
