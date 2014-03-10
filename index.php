@@ -59,7 +59,7 @@
             <div class="gridster stop" data-type="stop"><div class="add_widget" data-type="stop">Stop</div><ul></ul></div>
             <div class="gridster start" data-type="start"><div class="add_widget" data-type="start">Start</div><ul></ul></div>
             <div class="gridster more" data-type="more"><div class="add_widget" data-type="more">More</div><ul></ul></div>
-            <div class="gridster less" data-type="less"><div class="add_widget" data-type="keep">less</div><ul></ul></div>
+            <div class="gridster less" data-type="less"><div class="add_widget" data-type="less">less</div><ul></ul></div>
         </div>
     </body>
 </html>
