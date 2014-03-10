@@ -35,9 +35,9 @@ if ( refs.length == 1 || refs[1] == '' )
 retroCode = refs[1];
 $.cookie('your_retro', retroCode);
 
-myNotes = {'notes':[]}
-myNotes = JSON.stringify( myNotes );
-sessionStorage[retroCode+'notes'] = myNotes;
+// myNotes = {'notes':[]}
+// myNotes = JSON.stringify( myNotes );
+// sessionStorage[retroCode+'notes'] = myNotes;
 
 myNotes = sessionStorage[retroCode+'notes'];
 if ( !myNotes )
@@ -99,6 +99,7 @@ function drawNotes( snapshot )
 function removeNote( obj )
 {
     var id = $(obj).attr('id');
+
     type = $(obj).parents('.retro_type').data('type');
 
     var noteRef = notes[type].child( id )
@@ -112,24 +113,37 @@ function addNote( type, note )
 
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
-    console.log(myNotes)
-    console.log(id.name())
-
     myNotes.notes.push(id.name())
 
     myNotes = JSON.stringify(myNotes);
     sessionStorage[retroCode+'notes'] = myNotes;
+
+    notes[type].once('value', drawNotes); // need to resync for the delete icon, for now
 }
 
 function drawNote( type, note, id )
 {
-    $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+note+'</li>');
+    myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
+
+    var del = '';
+    console.log(id, myNotes, retroCode)
+    if ( $.inArray( id, myNotes.notes ) > -1 )
+    {
+        del = '<span class="glyphicon glyphicon-remove"></span>';
+    }
+    $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+del+note+'</li>');
 
     $('.retro_type.'+type+' ul li').off().on('mouseup',function(e){
         e.preventDefault();
-        if ( confirm("Delete the following?\n\n"+$(this).text()) )
+
+        var id = $(this).attr('id');
+        myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
+        if ( $.inArray( id, myNotes.notes ) > -1 )
         {
-            removeNote(this);
+            if ( confirm("Delete the following?\n\n"+$(this).text()) )
+            {
+                removeNote(this);
+            }
         }
     });
 }

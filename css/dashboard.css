@@ -68,8 +68,16 @@ body {
 .retro_type ul li {
     background:#aaa;
     overflow:hidden;
+    position: relative;
     padding:5px;
     margin:2px 0 0 0;
+}
+
+.retro_type ul li .glyphicon {
+    position:absolute;
+    right:10px;
+    top:10px;
+    cursor:pointer;
 }
 
 .retro_type.stop ul li {
