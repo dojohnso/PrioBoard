@@ -11,7 +11,7 @@ function retroString()
     return text;
 }
 
-var refs = document.referrer.split('?');
+var refs = document.location.href.split('?');
 
 if ( refs.length == 1 || refs[1] == '' )
 {
