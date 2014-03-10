@@ -1,4 +1,4 @@
-var options, isDragging = false, isResizing = false, retroNotes;
+var retroCode = '';
 
 function retroString()
 {
@@ -25,66 +25,47 @@ if ( refs.length == 1 || refs[1] == '' )
     else
     {
         // give them a new one
-        retroString = retroString();
-        $.cookie('your_retro', retroString);
-        window.top.location = 'http://local.retro.github.com/?'+retroString;
+        retroCode = retroString();
+        $.cookie('your_retro', retroCode);
+        window.top.location = 'http://local.retro.github.com/?'+retroCode;
         // window.top.location = 'http://retros.spartzinc.com/?'+retroString;
     }
 }
 
 retroCode = refs[1];
+$.cookie('your_retro', retroCode);
+
+myNotes = {'notes':[]}
+myNotes = JSON.stringify( myNotes );
+sessionStorage[retroCode+'notes'] = myNotes;
+
+myNotes = sessionStorage[retroCode+'notes'];
+if ( !myNotes )
+{
+    myNotes = {'notes':[]}
+    myNotes = JSON.stringify( myNotes );
+    sessionStorage[retroCode+'notes'] = myNotes;
+}
 
 $(function(){
-
-    options = {
-        widget_margins: [3, 3],
-        widget_base_dimensions: [50, 50],
-        max_cols:4,
-        extra_rows:1,
-        resize: {
-            enabled: true,
-            start: function(e, ui, $widget) {
-                isResizing = true;
-            },
-
-            resize: function(e, ui, $widget) {
-            },
-
-            stop: function(e, ui, $widget) {
-                isResizing = false;
-                updateSerial( $widget.parents('.gridster').data('type') )
-            }
-        },
-        draggable: {
-            start: function(e, ui) {
-                isDragging = true;
-            },
-
-            drag: function(e, ui) {
-            },
-
-            stop: function(e, ui) {
-                isDragging = false;
-                updateSerial( $(e.target).parents('.gridster').data('type') )
-            }
-        }
-    }
-
-    grids = {}
-    grids.keep = $(".gridster.keep ul").gridster(options).data('gridster');
-    grids.stop = $(".gridster.stop ul").gridster(options).data('gridster');
-    grids.start = $(".gridster.start ul").gridster(options).data('gridster');
-    grids.more = $(".gridster.more ul").gridster(options).data('gridster');
-    grids.less = $(".gridster.less ul").gridster(options).data('gridster');
 
     $('.add_widget').on('click',function(e){
         e.preventDefault();
 
-        note = 'Bacon ipsum dolor sit pork sparfe ribs leberkas'+Math.random();
         type = $(this).data('type')
-        addNote( type, note );
+        $(this).parents('.retro_type').find('.add_form').toggle(200).find('textarea').focus();
 
         return false;
+    });
+
+    $('.add_form').find(':button').on('click',function(){
+
+        var note = $(this).parent().find('textarea').val();
+
+        note = $("<div/>").html( note ).text(); //filter tags
+
+        addNote( $(this).parents('.retro_type').data('type'), note );
+        $(this).parent().find('textarea').val('').focus();
     });
 
     notes = {}
@@ -104,65 +85,51 @@ $(function(){
 function drawNotes( snapshot )
 {
     type = snapshot.name();
-    grids[type].remove_all_widgets();
+    $('.retro_type.'+type+' ul').find('li').remove();
 
     if ( snapshot.val() !== null )
     {
-        $.each(snapshot.val().serialized, function() {
-            drawNote(type, this.text, this.size_x, this.size_y, this.col, this.row);
-        });
+        for ( i in snapshot.val() )
+        {
+            drawNote(type, snapshot.val()[i].note, i);
+        }
     }
 }
 
-// function removeNote( obj )
-// {
-//     var id = $(obj).attr('id');
-//     grid = $(obj).parents('.gridster');
-//     type = grid.data('type');
+function removeNote( obj )
+{
+    var id = $(obj).attr('id');
+    type = $(obj).parents('.retro_type').data('type');
 
-//     var noteRef = notes[type].child( id )
-//     noteRef.remove();
-// }
+    var noteRef = notes[type].child( id )
+    noteRef.remove();
+}
 
 function addNote( type, note )
 {
-    drawNote(type, note, 4, 2 );
-    updateSerial(type);
+    var noteRef = notes[type];
+    id = noteRef.push({note:note});
+
+    myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
+
+    console.log(myNotes)
+    console.log(id.name())
+
+    myNotes.notes.push(id.name())
+
+    myNotes = JSON.stringify(myNotes);
+    sessionStorage[retroCode+'notes'] = myNotes;
 }
 
-function updateSerial(type)
+function drawNote( type, note, id )
 {
-    var serialRef = notes[type].child( 'serialized' );
+    $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+note+'</li>');
 
-    var serial = grids[type].serialize();
-
-    for ( i in serial )
-    {
-        serial[i].text = $('.gridster[data-type='+type+']').find('li[data-col='+serial[i].col+'][data-row='+serial[i].row+']').text();
-    }
-
-    serialRef.set( serial );
-}
-
-function drawNote( type, note, size_x, size_y, col, row )
-{
-    $widget = grids[type].add_widget('<li>'+note+'</li>', size_x, size_y, col, row);
-
-    $widget.on('mouseup',function(e){
+    $('.retro_type.'+type+' ul li').off().on('mouseup',function(e){
         e.preventDefault();
-        if ( isDragging || isResizing ) {
-            return;
-        }
-
         if ( confirm("Delete the following?\n\n"+$(this).text()) )
         {
-            grid = $(this).parents('.gridster');
-            type = grid.data('type');
-
-            // removeNote(this);
-            grids[type].remove_widget( $(this), function(){
-                updateSerial(type);
-            });
+            removeNote(this);
         }
     });
 }

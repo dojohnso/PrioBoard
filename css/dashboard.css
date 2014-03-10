@@ -10,21 +10,29 @@ body {
         -ms-user-select: none;
             user-select: none;
     padding:15px 0;
+    background-color: #000;
+    position: relative;
+}
+
+.add_widget .glyphicon {
+    position:absolute;
+    right:15px;
+    top:20px;
 }
 
 .add_widget:hover {
-    background-color: #444;
-}
-
-.add_widget:active {
     background-color: #222;
 }
 
-.gridster {
+.add_widget:active {
+    background-color: #444;
+}
+
+.retro_type {
     float:left;
     min-height:50px;
-    margin:10px 0px;
-    width:226px;
+    margin:10px 5px;
+    width:216px;
     color: #fff;
     text-align: center;
 }
@@ -34,50 +42,67 @@ body {
     min-height:20px;
 }
 
-.gridster ul {
+.retro_type ul {
     text-align: left;
     list-style: none;
     color: #333;
+    margin:0;
+    padding:0;
 }
 
-.gridster ul li {
-    cursor:move;
+.retro_type .add_form {
+    color:#000;
+    display: none;
+}
+
+.retro_type .add_form textarea {
+    width:100%;
+}
+
+.retro_type .add_form input {
+    height:50px;
+    margin:0 0 5px 0;
+    width:90%;
+}
+
+.retro_type ul li {
     background:#aaa;
     overflow:hidden;
     padding:5px;
+    margin:2px 0 0 0;
 }
 
-.gridster.stop ul li {
+.retro_type.stop ul li {
     background:#e74c3c;
 }
-.gridster.stop {
-    border: 1px dotted #e74c3c;
+.retro_type.stop {
+    border: 1px solid #e74c3c;
 }
 
-.gridster.start ul li {
+.retro_type.start ul li {
     background:#2ecc71;
 }
-.gridster.start {
-    border: 1px dotted #2ecc71;
+.retro_type.start {
+    border: 1px solid #2ecc71;
 }
 
-.gridster.keep ul li {
+.retro_type.keep ul li {
     background:#3498db;
 }
-.gridster.keep {
-    border: 1px dotted #3498db;
+.retro_type.keep {
+    border: 1px solid #3498db;
 }
 
-.gridster.more ul li {
+.retro_type.more ul li {
     background:#9b59b6;
 }
-.gridster.more {
-    border: 1px dotted #9b59b6;
+.retro_type.more {
+    border: 1px solid #9b59b6;
 }
 
-.gridster.less ul li {
+.retro_type.less ul li {
     background:#f1c40f;
 }
-.gridster.less {
-    border: 1px dotted #f1c40f;
+.retro_type.less {
+    border: 1px solid #f1c40f;
 }
