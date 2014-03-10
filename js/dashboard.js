@@ -29,7 +29,7 @@ if ( refs.length == 1 || refs[1] == '' )
 }
 
 retroCode = refs[1];
-$.cookie('your_retro', retroCode);
+// $.cookie('your_retro', retroCode);
 
 $(function(){
 

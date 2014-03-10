@@ -47,18 +47,19 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/?<?= $_SERVER['QUERY_STRING'];?>">Home</a></li>
-                        <li><a href="/add?<?= $_SERVER['QUERY_STRING'];?>">Add</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <!-- <li><a href="#" class="add_widget" data-type="less">Less</a></li> -->
                     </ul>
                 </div>
             </div>
         </div>
+
         <div class="container">
-            <div class="gridster keep" data-type="keep">Keep<ul></ul></div>
-            <div class="gridster stop" data-type="stop">Stop<ul></ul></div>
-            <div class="gridster start" data-type="start">Start<ul></ul></div>
-            <div class="gridster more" data-type="more">More<ul></ul></div>
-            <div class="gridster less" data-type="less">Less<ul></ul></div>
+            <div class="gridster keep" data-type="keep"><div class="add_widget" data-type="keep">Keep</div><ul></ul></div>
+            <div class="gridster stop" data-type="stop"><div class="add_widget" data-type="stop">Stop</div><ul></ul></div>
+            <div class="gridster start" data-type="start"><div class="add_widget" data-type="start">Start</div><ul></ul></div>
+            <div class="gridster more" data-type="more"><div class="add_widget" data-type="more">More</div><ul></ul></div>
+            <div class="gridster less" data-type="less"><div class="add_widget" data-type="keep">less</div><ul></ul></div>
         </div>
     </body>
 </html>
