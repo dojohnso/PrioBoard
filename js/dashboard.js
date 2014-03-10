@@ -24,12 +24,13 @@ if ( refs.length == 1 || refs[1] == '' )
     else
     {
         // give them a new one
-        window.top.location = 'http://local.retro.github.com/?'+retroString();
+        retroString = retroString();
+        $.cookie('your_retro', retroString);
+        window.top.location = 'http://local.retro.github.com/?'+retroString;
     }
 }
 
 retroCode = refs[1];
-// $.cookie('your_retro', retroCode);
 
 $(function(){
 
