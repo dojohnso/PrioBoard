@@ -20,6 +20,7 @@ if ( refs.length == 1 || refs[1] == '' )
     if ( typeof retroCode != 'undefined' )
     {
         window.top.location = 'http://local.retro.github.com/?'+retroCode;
+        // window.top.location = 'http://retros.spartzinc.com/?'+retroCode;
     }
     else
     {
@@ -27,6 +28,7 @@ if ( refs.length == 1 || refs[1] == '' )
         retroString = retroString();
         $.cookie('your_retro', retroString);
         window.top.location = 'http://local.retro.github.com/?'+retroString;
+        // window.top.location = 'http://retros.spartzinc.com/?'+retroString;
     }
 }
 
