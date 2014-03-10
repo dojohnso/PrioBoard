@@ -47,8 +47,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <!-- <li><a href="#" class="add_widget" data-type="less">Less</a></li> -->
+                        <li class="active"><a href="/?<?= $_SERVER['QUERY_STRING']; ?>">Home</a></li>
+                        <li><a href="/submit?<?= $_SERVER['QUERY_STRING']; ?>">Submit</a></li>
                     </ul>
                 </div>
             </div>
