@@ -24,7 +24,10 @@
         <![endif]-->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
         <script src="/js/jquery.gridster.min.js"></script>
+        <script src="/js/jquery.cookie.js"></script>
+
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/dashboard.js"></script>
     </head>
@@ -44,26 +47,18 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <!-- <li><a href="#" class="add_widget" data-type="less">Less</a></li> -->
+                        <li class="active"><a href="/?<?= $_SERVER['QUERY_STRING'];?>">Home</a></li>
+                        <li><a href="/add?<?= $_SERVER['QUERY_STRING'];?>">Add</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
         <div class="container">
-            <div class="gridster label add_widget" data-type="keep">Keep</div>
-            <div class="gridster label add_widget" data-type="stop">Stop</div>
-            <div class="gridster label add_widget" data-type="start">Start</div>
-            <div class="gridster label add_widget" data-type="more">More</div>
-            <div class="gridster label add_widget" data-type="less">Less</div>
-        </div>
-        <div class="container">
-            <div class="gridster keep" data-type="keep"><ul></ul></div>
-            <div class="gridster stop" data-type="stop"><ul></ul></div>
-            <div class="gridster start" data-type="start"><ul></ul></div>
-            <div class="gridster more" data-type="more"><ul></ul></div>
-            <div class="gridster less" data-type="less"><ul></ul></div>
+            <div class="gridster keep" data-type="keep">Keep<ul></ul></div>
+            <div class="gridster stop" data-type="stop">Stop<ul></ul></div>
+            <div class="gridster start" data-type="start">Start<ul></ul></div>
+            <div class="gridster more" data-type="more">More<ul></ul></div>
+            <div class="gridster less" data-type="less">Less<ul></ul></div>
         </div>
     </body>
 </html>

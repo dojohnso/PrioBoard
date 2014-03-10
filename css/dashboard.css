@@ -25,6 +25,8 @@ body {
     min-height:50px;
     margin:10px 0px;
     width:226px;
+    color: #fff;
+    text-align: center;
 }
 
 .label {
@@ -33,7 +35,9 @@ body {
 }
 
 .gridster ul {
+    text-align: left;
     list-style: none;
+    color: #333;
 }
 
 .gridster ul li {
