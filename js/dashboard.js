@@ -126,23 +126,22 @@ function drawNote( type, note, id )
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
     var del = '';
-    console.log(id, myNotes, retroCode)
     if ( $.inArray( id, myNotes.notes ) > -1 )
     {
         del = '<span class="glyphicon glyphicon-remove"></span>';
     }
     $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+del+note+'</li>');
 
-    $('.retro_type.'+type+' ul li').off().on('mouseup',function(e){
+    $('.retro_type.'+type+' ul li .glyphicon-remove').off().on('mouseup',function(e){
         e.preventDefault();
 
-        var id = $(this).attr('id');
+        var id = $(this).parent().attr('id');
         myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
         if ( $.inArray( id, myNotes.notes ) > -1 )
         {
-            if ( confirm("Delete the following?\n\n"+$(this).text()) )
+            if ( confirm("Delete the following?\n\n"+$(this).parent().text()) )
             {
-                removeNote(this);
+                removeNote($(this).parent());
             }
         }
     });

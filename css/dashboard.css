@@ -51,13 +51,13 @@ body {
 .retro_type ul {
     text-align: left;
     list-style: none;
-    color: #333;
+    color: #111;
     margin:0;
     padding:0;
 }
 
 .retro_type .add_form {
-    color:#000;
+    color:#333;
     display: none;
 }
 
@@ -76,6 +76,7 @@ body {
     overflow:hidden;
     position: relative;
     padding:5px;
+    padding-right: 20px;
     margin:2px 0 0 0;
 }
 
