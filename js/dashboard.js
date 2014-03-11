@@ -48,6 +48,7 @@ if ( !myNotes )
 }
 
 $(function(){
+    $('.navbar-brand').append(' | ' + retroCode)
 
     $('.add_widget .glyphicon-pencil').on('click',function(e){
         e.preventDefault();
