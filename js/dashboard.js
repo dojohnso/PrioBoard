@@ -63,6 +63,7 @@ $(function(){
         var note = $(this).parent().find('textarea').val();
 
         note = $("<div/>").html( note ).text(); //filter tags
+        note = $.trim(note);
 
         addNote( $(this).parents('.retro_type').data('type'), note );
         $(this).parent().find('textarea').val('').focus();
