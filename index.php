@@ -54,7 +54,7 @@
 
         <div class="container">
             <div class="retro_type keep" data-type="keep">
-                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-pencil"></span>Keep</div>
+                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Keep</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="retro_type stop" data-type="stop">
-                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-pencil"></span>Stop</div>
+                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Stop</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
@@ -71,7 +71,8 @@
                 <ul></ul>
             </div>
 
-            <div class="retro_type start" data-type="start"><div class="add_widget" data-type="start"><span class="glyphicon glyphicon-pencil"></span>Start</div>
+            <div class="retro_type start" data-type="start">
+                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Start</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
@@ -79,7 +80,8 @@
                 <ul></ul>
             </div>
 
-            <div class="retro_type more" data-type="more"><div class="add_widget" data-type="more"><span class="glyphicon glyphicon-pencil"></span>More</div>
+            <div class="retro_type more" data-type="more">
+                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>More</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
@@ -87,7 +89,8 @@
                 <ul></ul>
             </div>
 
-            <div class="retro_type less" data-type="less"><div class="add_widget" data-type="less"><span class="glyphicon glyphicon-pencil"></span>Less</div>
+            <div class="retro_type less" data-type="less">
+                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Less</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>

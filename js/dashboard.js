@@ -49,11 +49,30 @@ if ( !myNotes )
 
 $(function(){
 
-    $('.add_widget').on('click',function(e){
+    $('.add_widget .glyphicon-pencil').on('click',function(e){
         e.preventDefault();
 
-        type = $(this).data('type')
+        type = $(this).parent().data('type')
         $(this).parents('.retro_type').find('.add_form').toggle(200).find('textarea').focus();
+
+        return false;
+    });
+
+    $('.add_widget .glyphicon-chevron-down, .add_widget .glyphicon-chevron-up').on('click',function(e){
+        e.preventDefault();
+
+        if ( $(this).parents('.retro_type').find('ul:visible').length )
+        {
+            $(this).parents('.retro_type').find('ul').slideUp(50);
+            $(this).removeClass( 'glyphicon-chevron-up' );
+            $(this).addClass( 'glyphicon-chevron-down' );
+        }
+        else
+        {
+            $(this).parents('.retro_type').find('ul').slideDown(50);
+            $(this).removeClass( 'glyphicon-chevron-down' );
+            $(this).addClass( 'glyphicon-chevron-up' );
+        }
 
         return false;
     });

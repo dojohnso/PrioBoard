@@ -4,7 +4,6 @@ body {
 }
 
 .add_widget {
-    cursor:pointer;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -16,16 +15,22 @@ body {
 
 .add_widget .glyphicon {
     position:absolute;
-    right:15px;
+    cursor:pointer;
     top:20px;
 }
 
-.add_widget:hover {
-    background-color: #222;
+.add_widget .glyphicon-pencil {
+    right:15px;
 }
 
-.add_widget:active {
-    background-color: #444;
+.add_widget .glyphicon-chevron-down, .add_widget .glyphicon-chevron-up {
+    position:absolute;
+    cursor:pointer;
+    left:15px;
+}
+
+.add_widget .glyphicon:hover {
+    color: #aaa;
 }
 
 .retro_type {
@@ -92,6 +97,7 @@ body {
 }
 .retro_type.stop {
     border: 1px solid #e74c3c;
+    border-bottom: 5px solid #e74c3c;
 }
 
 .retro_type.start ul li {
@@ -99,6 +105,7 @@ body {
 }
 .retro_type.start {
     border: 1px solid #2ecc71;
+    border-bottom: 5px solid #2ecc71;
 }
 
 .retro_type.keep ul li {
@@ -106,6 +113,7 @@ body {
 }
 .retro_type.keep {
     border: 1px solid #3498db;
+    border-bottom: 5px solid #3498db;
 }
 
 .retro_type.more ul li {
@@ -113,6 +121,7 @@ body {
 }
 .retro_type.more {
     border: 1px solid #9b59b6;
+    border-bottom: 5px solid #9b59b6;
 }
 
 .retro_type.less ul li {
@@ -120,4 +129,5 @@ body {
 }
 .retro_type.less {
     border: 1px solid #f1c40f;
+    border-bottom: 5px solid #f1c40f;
 }
