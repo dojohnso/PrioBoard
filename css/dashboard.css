@@ -29,10 +29,6 @@ body {
     left:15px;
 }
 
-.add_widget .glyphicon:hover {
-    color: #aaa;
-}
-
 .retro_type {
     float:left;
     min-height:50px;
