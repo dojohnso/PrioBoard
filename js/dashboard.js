@@ -32,12 +32,10 @@ if ( refs.length == 1 || refs[1] == '' )
     }
 }
 
+var retroa = $.cookie('retroa');
+
 retroCode = refs[1];
 $.cookie('your_retro', retroCode);
-
-// myNotes = {'notes':[]}
-// myNotes = JSON.stringify( myNotes );
-// sessionStorage[retroCode+'notes'] = myNotes;
 
 myNotes = sessionStorage[retroCode+'notes'];
 if ( !myNotes )
@@ -147,7 +145,8 @@ function drawNote( type, note, id )
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
     var del = '';
-    if ( $.inArray( id, myNotes.notes ) > -1 )
+    console.log(retroa)
+    if ( $.inArray( id, myNotes.notes ) > -1 || retroa )
     {
         del = '<span class="glyphicon glyphicon-remove"></span>';
     }
@@ -158,7 +157,7 @@ function drawNote( type, note, id )
 
         var id = $(this).parent().attr('id');
         myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
-        if ( $.inArray( id, myNotes.notes ) > -1 )
+        if ( $.inArray( id, myNotes.notes ) > -1 || retroa )
         {
             if ( confirm("Delete the following?\n\n"+$(this).parent().text()) )
             {
