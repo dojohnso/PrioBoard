@@ -87,7 +87,7 @@
                 <ul></ul>
             </div>
 
-            <div class="retro_type less" data-type="less"><div class="add_widget" data-type="less"><span class="glyphicon glyphicon-pencil"></span>less</div>
+            <div class="retro_type less" data-type="less"><div class="add_widget" data-type="less"><span class="glyphicon glyphicon-pencil"></span>Less</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
