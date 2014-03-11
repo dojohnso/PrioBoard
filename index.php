@@ -41,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button> -->
-                    <a class="navbar-brand" href="#">Retrospective 2.0</a>
+                    <a class="navbar-brand" href="/?<?= $_SERVER['QUERY_STRING']; ?>">Retrospective 2.0</a>
                 </div>
                 <!-- <div class="collapse navbar-collapse"> -->
                     <!-- <ul class="nav navbar-nav"> -->
