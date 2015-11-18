@@ -1,5 +1,13 @@
 <?php
+if ( $_GET['a'] == 'retrogawd' )
+{
+    $splits = explode( '&', $_SERVER['QUERY_STRING'] );
+    $url = $_SERVER['HTTP_HOST'].'/?'.$splits[0];
 
+    setcookie( 'retroa', true );
+    header( 'location: http://' . $url );
+    exit;
+}
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,7 +51,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button> -->
-                    <a class="navbar-brand" href="#">PrioBoard</a>
+                    <a class="navbar-brand" href="?<?= $_SERVER['QUERY_STRING']; ?>">PrioBoard</a>
                 </div>
                 <!-- <div class="collapse navbar-collapse"> -->
                     <!-- <ul class="nav navbar-nav"> -->
@@ -55,6 +63,10 @@
         </div>
 
         <div class="container">
+            <div class="admin-code-box">
+                <label class="sr-only" for="admin-code">Admin Code</label>
+                <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
+            </div>
             <div class="retro_type keep" data-type="keep">
                 <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Keep</div>
                 <div class="add_form">

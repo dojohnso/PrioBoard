@@ -38,11 +38,8 @@ refs = refs.split('&');
 gAdmin = refs[1] == 'cu'
 
 retroCode = refs[0];
-$.cookie('your_retro', retroCode);
 
-// myNotes = {'notes':[]}
-// myNotes = JSON.stringify( myNotes );
-// sessionStorage[retroCode+'notes'] = myNotes;
+$.cookie('your_retro', retroCode);
 
 myNotes = sessionStorage[retroCode+'notes'];
 if ( !myNotes )
