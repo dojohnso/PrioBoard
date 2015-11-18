@@ -50,15 +50,14 @@ if ( $_GET['a'] == 'priogawd' )
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="?new">Generate New Code</a></li>
-                        <li>
+                        <li><a href="?new">New Code?</a></li>
+                        <!-- <li>
                             <form id="code-form" method="get">
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon" id="basic-addon1">?</span>
-                                    <input type="text" class="form-control" placeholder="Enter Your Code" aria-describedby="basic-addon1" name="b">
+                                    <input type="text" class="form-control" placeholder="Enter Code" id="your-code" name="b">
                                 </div>
                             </form>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
