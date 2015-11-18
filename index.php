@@ -9,12 +9,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Retrospective 2.0</title>
+		<link id="favicon" rel="shortcut icon" href="images/prioboard-star.png" />
+
+        <title>PrioBoard</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/normalize.css" rel="stylesheet">
-        <link href="/css/dashboard.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/normalize.css" rel="stylesheet">
+        <link href="css/dashboard.css?<?php echo filemtime( 'css/dashboard.css' ); ?>" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -24,10 +26,10 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
-        <script src="/js/jquery.cookie.js"></script>
+        <script src="js/jquery.cookie.js"></script>
 
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/dashboard.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/dashboard.js?<?php echo filemtime( 'js/dashboard.js' ); ?>"></script>
     </head>
 
     <body>
@@ -41,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button> -->
-                    <a class="navbar-brand" href="#">Retrospective 2.0</a>
+                    <a class="navbar-brand" href="#">PrioBoard</a>
                 </div>
                 <!-- <div class="collapse navbar-collapse"> -->
                     <!-- <ul class="nav navbar-nav"> -->

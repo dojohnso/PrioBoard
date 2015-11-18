@@ -1,4 +1,5 @@
 var retroCode = '';
+var gAdmin = false;
 
 function retroString()
 {
@@ -11,28 +12,32 @@ function retroString()
     return text;
 }
 
-var refs = document.location.href.split('?');
+var refs = document.location.search.replace('\?','');
 
-if ( refs.length == 1 || refs[1] == '' )
+if ( refs.length == 0 || refs == '' )
 {
     // take them to their cookie if exists
     retroCode = $.cookie('your_retro');
     if ( typeof retroCode != 'undefined' )
     {
-        window.top.location = 'http://local.retro.github.com/?'+retroCode;
-        // window.top.location = 'http://retros.spartzinc.com/?'+retroCode;
+        //window.top.location = 'http://local.retro.github.com/?'+retroCode;
+        window.top.location = 'http://mimirdev.com/prioboard/?'+retroCode;
     }
     else
     {
         // give them a new one
         retroCode = retroString();
         $.cookie('your_retro', retroCode);
-        window.top.location = 'http://local.retro.github.com/?'+retroCode;
-        // window.top.location = 'http://retros.spartzinc.com/?'+retroString;
+        //window.top.location = 'http://local.retro.github.com/?'+retroCode;
+        window.top.location = 'http://mimirdev.com/prioboard/?'+retroString;
     }
 }
 
-retroCode = refs[1];
+refs = refs.split('&');
+
+gAdmin = refs[1] == 'cu'
+
+retroCode = refs[0];
 $.cookie('your_retro', retroCode);
 
 // myNotes = {'notes':[]}
@@ -85,7 +90,15 @@ $(function(){
         note = $("<div/>").html( note ).text(); //filter tags
         note = $.trim(note);
 
-        addNote( $(this).parents('.retro_type').data('type'), note );
+		if ( note.length == 0 )
+		{
+			alert('You must type something.');
+		}
+		else
+		{
+        	addNote( $(this).parents('.retro_type').data('type'), note );
+		}
+
         $(this).parent().find('textarea').val('').focus();
     });
 
@@ -147,7 +160,7 @@ function drawNote( type, note, id )
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
     var del = '';
-    if ( $.inArray( id, myNotes.notes ) > -1 )
+    if ( $.inArray( id, myNotes.notes ) > -1 || gAdmin )
     {
         del = '<span class="glyphicon glyphicon-remove"></span>';
     }
@@ -158,7 +171,7 @@ function drawNote( type, note, id )
 
         var id = $(this).parent().attr('id');
         myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
-        if ( $.inArray( id, myNotes.notes ) > -1 )
+        if ( $.inArray( id, myNotes.notes ) > -1 || gAdmin)
         {
             if ( confirm("Delete the following?\n\n"+$(this).parent().text()) )
             {
