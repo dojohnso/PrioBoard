@@ -1,4 +1,4 @@
-retrospective
+PrioBoard
 =============
 
-A work in progress. Potentially a tool to replace writing post-it notes and putting them on a white board, instead allowing users to submit thoughts via their mobile device and have them appear on a dashboard.
+A work in progress. A tool used to track priorities, or as a Retrospective tool to list things to start, stop, keep doing, etc.
