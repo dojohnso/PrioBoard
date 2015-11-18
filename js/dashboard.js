@@ -1,10 +1,9 @@
 var retroCode = '';
-var gAdmin = false;
 
 function retroString()
 {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
 
     for( var i=0; i < 10; i++ )
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -13,31 +12,42 @@ function retroString()
 }
 
 var refs = document.location.search.replace('\?','');
+refs = refs.split('&');
 
-if ( refs.length == 0 || refs == '' )
+for ( r in refs )
+{
+    param = refs[r].split('=');
+
+    if ( param[0] == 'b' )
+    {
+        retroCode = param[1];
+    }
+    else if ( param.length == 1 && param[0] != '' )
+    {
+        retroCode = param[0]; // backward compatible - take ?code to ?b=code
+        window.top.location = '?b='+retroCode;
+    }
+}
+
+if ( refs.length == 0 || refs == '' || retroCode == 'new' || retroCode == '' )
 {
     // take them to their cookie if exists
     retroCode = $.cookie('your_retro');
-    if ( typeof retroCode != 'undefined' )
+    if ( typeof retroCode != 'undefined' && retroCode != '' && retroCode != 'new' )
     {
-        //window.top.location = 'http://local.retro.github.com/?'+retroCode;
-        window.top.location = 'http://mimirdev.com/prioboard/?'+retroCode;
+        window.top.location = '?b='+retroCode;
     }
     else
     {
         // give them a new one
         retroCode = retroString();
         $.cookie('your_retro', retroCode);
-        //window.top.location = 'http://local.retro.github.com/?'+retroCode;
-        window.top.location = 'http://mimirdev.com/prioboard/?'+retroString;
+        window.top.location = '?b='+retroCode;
     }
 }
 
-refs = refs.split('&');
+var gAdmin = $.cookie('gAdmin');
 
-gAdmin = refs[1] == 'cu'
-
-retroCode = refs[0];
 
 $.cookie('your_retro', retroCode);
 

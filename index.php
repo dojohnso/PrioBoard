@@ -1,13 +1,14 @@
 <?php
-if ( $_GET['a'] == 'retrogawd' )
+if ( $_GET['a'] == 'priogawd' )
 {
-    $splits = explode( '&', $_SERVER['QUERY_STRING'] );
-    $url = $_SERVER['HTTP_HOST'].'/?'.$splits[0];
+    setcookie( 'gAdmin', true );
 
-    setcookie( 'retroa', true );
+    $splits = explode( '&', $_SERVER['QUERY_STRING'] );
+    $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'?'.$splits[0];
     header( 'location: http://' . $url );
     exit;
 }
+
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,35 +46,36 @@ if ( $_GET['a'] == 'retrogawd' )
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button> -->
                     <a class="navbar-brand" href="?<?= $_SERVER['QUERY_STRING']; ?>">PrioBoard</a>
                 </div>
-                <!-- <div class="collapse navbar-collapse"> -->
-                    <!-- <ul class="nav navbar-nav"> -->
-                        <!-- <li class="active"><a href="/?<?= $_SERVER['QUERY_STRING']; ?>">Home</a></li> -->
-                        <!-- <li><a href="/submit?<?= $_SERVER['QUERY_STRING']; ?>">Submit</a></li> -->
-                    <!-- </ul> -->
-                <!-- </div> -->
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="?new">Generate New Code</a></li>
+                        <li>
+                            <form id="code-form" method="get">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon" id="basic-addon1">?</span>
+                                    <input type="text" class="form-control" placeholder="Enter Your Code" aria-describedby="basic-addon1" name="b">
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="container">
-            <div class="admin-code-box">
+            <!-- <div class="admin-code-box">
                 <label class="sr-only" for="admin-code">Admin Code</label>
                 <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
-            </div>
+            </div> -->
             <div class="retro_type keep" data-type="keep">
                 <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Keep</div>
                 <div class="add_form">
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
                 </div>
-                <ul></ul>
+                <ul><li class="text-center">... loading ...</li></ul>
             </div>
 
             <div class="retro_type stop" data-type="stop">
@@ -82,7 +84,7 @@ if ( $_GET['a'] == 'retrogawd' )
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
                 </div>
-                <ul></ul>
+                <ul><li class="text-center">... loading ...</li></ul>
             </div>
 
             <div class="retro_type start" data-type="start">
@@ -91,7 +93,7 @@ if ( $_GET['a'] == 'retrogawd' )
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
                 </div>
-                <ul></ul>
+                <ul><li class="text-center">... loading ...</li></ul>
             </div>
 
             <div class="retro_type more" data-type="more">
@@ -100,7 +102,7 @@ if ( $_GET['a'] == 'retrogawd' )
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
                 </div>
-                <ul></ul>
+                <ul><li class="text-center">... loading ...</li></ul>
             </div>
 
             <div class="retro_type less" data-type="less">
@@ -109,7 +111,7 @@ if ( $_GET['a'] == 'retrogawd' )
                     <textarea class="form-control" rows="5"></textarea>
                     <button type="button" class="btn btn-default">Submit</button>
                 </div>
-                <ul></ul>
+                <ul><li class="text-center">... loading ...</li></ul>
             </div>
         </div>
     </body>

@@ -131,3 +131,7 @@ body {
     border: 1px solid #f1c40f;
     border-bottom: 5px solid #f1c40f;
 }
+
+#code-form {
+    margin-top:10px;
+}
