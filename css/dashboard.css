@@ -65,6 +65,9 @@ body {
     color:#333;
     display: none;
 }
+.retro_type .add_form form {
+    width:100%;
+}
 
 .retro_type ul li {
     background:#aaa;
