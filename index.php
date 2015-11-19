@@ -65,7 +65,7 @@ else if ( isset( $_GET['a'] ) )
                 <div class="navbar-header">
                     <a class="navbar-brand" href="?<?= $_SERVER['QUERY_STRING']; ?>">PrioBoard</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="srplusnly">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -88,11 +88,11 @@ else if ( isset( $_GET['a'] ) )
 
         <div class="container">
             <!-- <div class="admin-code-box">
-                <label class="sr-only" for="admin-code">Admin Code</label>
+                <label class="srplusnly" for="admin-code">Admin Code</label>
                 <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
             </div> -->
             <div class="retro_type keep" data-type="keep">
-                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-menu-hamburger"></span>Keep</div>
+                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Keep</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Keep..." />
@@ -103,7 +103,7 @@ else if ( isset( $_GET['a'] ) )
             </div>
 
             <div class="retro_type stop" data-type="stop">
-                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-menu-hamburger"></span>Stop</div>
+                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Stop</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Stop..." />
@@ -114,7 +114,7 @@ else if ( isset( $_GET['a'] ) )
             </div>
 
             <div class="retro_type start" data-type="start">
-                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-menu-hamburger"></span>Start</div>
+                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Start</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Start..." />
@@ -125,7 +125,7 @@ else if ( isset( $_GET['a'] ) )
             </div>
 
             <div class="retro_type more" data-type="more">
-                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-menu-hamburger"></span>More</div>
+                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>More</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="More..." />
@@ -136,7 +136,7 @@ else if ( isset( $_GET['a'] ) )
             </div>
 
             <div class="retro_type less" data-type="less">
-                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-menu-hamburger"></span>Less</div>
+                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Less</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Less..." />

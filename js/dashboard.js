@@ -83,7 +83,7 @@ if ( !myVotes )
 $(function(){
     $('.navbar-brand').append(' | ' + retroCode)
 
-    $('.add_widget .glyphicon-menu-hamburger').on('click',function(e){
+    $('.add_widget .glyphicon-plus').on('click',function(e){
         e.preventDefault();
 
         type = $(this).parent().data('type')
