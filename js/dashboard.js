@@ -3,7 +3,7 @@ var retroCode = '';
 function retroString()
 {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for( var i=0; i < 10; i++ )
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -31,13 +31,26 @@ for ( r in refs )
 
 if ( refs.length == 0 || refs == '' || retroCode == 'new' || retroCode == '' )
 {
-    // take them to their cookie if exists
-    retroCode = $.cookie('your_retro');
-    if ( typeof retroCode != 'undefined' && retroCode != '' && retroCode != 'new' )
+    var newCode = false;
+    if ( retroCode == 'new' )
     {
-        window.top.location = '?b='+retroCode;
+        newCode = true;
     }
     else
+    {
+        // take them to their cookie if exists
+        retroCode = $.cookie('your_retro');
+        if ( typeof retroCode != 'undefined' && retroCode != '' && retroCode != 'new' )
+        {
+            window.top.location = '?b='+retroCode;
+        }
+        else
+        {
+            newCode - true;
+        }
+    }
+
+    if ( newCode )
     {
         // give them a new one
         retroCode = retroString();
