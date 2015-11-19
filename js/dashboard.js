@@ -72,6 +72,14 @@ if ( !myNotes )
     sessionStorage[retroCode+'notes'] = myNotes;
 }
 
+myVotes = sessionStorage[retroCode+'votes'];
+if ( !myVotes )
+{
+    myVotes = {'votes':[]}
+    myVotes = JSON.stringify( myVotes );
+    sessionStorage[retroCode+'votes'] = myVotes;
+}
+
 $(function(){
     $('.navbar-brand').append(' | ' + retroCode)
 
@@ -194,29 +202,30 @@ function drawNote( type, noteRef, id )
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
     var del = '';
+    var upIcon = '';
     if ( $.inArray( id, myNotes.notes ) > -1 || gAdmin )
     {
         del = '<span class="glyphicon glyphicon-remove"></span>';
     }
 
-    var upIcon = '<span class="glyphicon glyphicon-arrow-up">('+upvotes+')</span>';
+    myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
+    // if ( ($.inArray( id, myNotes.notes ) == -1 && $.inArray( id, myVotes.votes ) == -1) || gAdmin )
+    // {
+        upIcon = '<span class="glyphicon glyphicon-ok">('+upvotes+')</span>';
+    // }
+
     $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+upIcon+del+'<span class="note">'+note+'</span></li>');
 
     $('.retro_type.'+type+' ul li .glyphicon-remove').off().on('mouseup',function(e){
         e.preventDefault();
 
-        var id = $(this).parent().attr('id');
-        myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
-        if ( $.inArray( id, myNotes.notes ) > -1 || gAdmin)
+        if ( confirm("Delete the following?\n\n"+$(this).parent().find('span.note').text()) )
         {
-            if ( confirm("Delete the following?\n\n"+$(this).parent().find('span.note').text()) )
-            {
-                removeNote($(this).parent());
-            }
+            removeNote($(this).parent());
         }
     });
 
-    $('.retro_type.'+type+' ul li .glyphicon-arrow-up').off().on('mouseup',function(e){
+    $('.retro_type.'+type+' ul li .glyphicon-ok').off().on('mouseup',function(e){
         e.preventDefault();
 
         type = $(this).parents('.retro_type').data('type');
@@ -224,16 +233,34 @@ function drawNote( type, noteRef, id )
         var id = $(this).parent().attr('id');
         var noteRef = notes[type].child( id )
 
-        var currentVotes;
+        myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
+        console.log(myVotes)
+        if ( ($.inArray( id, myNotes.notes ) > -1 || $.inArray( id, myVotes.votes ) > -1)  )
+        {
+            return false;
+        }
+
         noteRef.once("value", function(snap) {
             noteRef.transaction(
                 function(currentNote)
                 {
                     return {note:currentNote.note, upvotes: ++currentNote.upvotes || 2}
                 },
-                function (a,b,snap)
+                function (error,committed,snap)
                 {
-                    noteRef.setPriority(-1*snap.val().upvotes);
+                    if ( committed && error == null )
+                    {
+                        myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
+
+                        myVotes.votes.push(snap.key());
+
+                        myVotes = JSON.stringify(myVotes);
+                        sessionStorage[retroCode+'votes'] = myVotes;
+
+                        noteRef.setPriority(-1*snap.val().upvotes);
+
+                        // $('.retro_type.'+type+' ul li#'+snap.key()+' .glyphicon-ok').remove();
+                    }
                 }
             );
         });

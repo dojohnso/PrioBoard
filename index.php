@@ -3,8 +3,16 @@ if ( $_GET['a'] == 'priogawd' )
 {
     setcookie( 'gAdmin', true );
 
-    $splits = explode( '&', $_SERVER['QUERY_STRING'] );
-    $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'?'.$splits[0];
+    $url = $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
+
+    header( 'location: http://' . $url );
+    exit;
+}
+else if ( isset( $_GET['a'] ) )
+{
+    setcookie( 'gAdmin', false );
+
+    $url = $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
     header( 'location: http://' . $url );
     exit;
 }
