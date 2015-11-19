@@ -139,11 +139,11 @@ $(function(){
     });
 
     notes = {}
-    notes.keep = new Firebase('https://dojohnso.firebaseio.com/retrospective/'+retroCode+'/keep');
-    notes.stop = new Firebase('https://dojohnso.firebaseio.com/retrospective/'+retroCode+'/stop');
-    notes.start = new Firebase('https://dojohnso.firebaseio.com/retrospective/'+retroCode+'/start');
-    notes.more = new Firebase('https://dojohnso.firebaseio.com/retrospective/'+retroCode+'/more');
-    notes.less = new Firebase('https://dojohnso.firebaseio.com/retrospective/'+retroCode+'/less');
+    notes.keep = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/keep');
+    notes.stop = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/stop');
+    notes.start = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/start');
+    notes.more = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/more');
+    notes.less = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/less');
 
     notes.keep.on('value', drawNotes);
     notes.stop.on('value', drawNotes);
