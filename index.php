@@ -34,7 +34,7 @@ if ( $_GET['a'] == 'priogawd' )
         <![endif]-->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+        <script type='text/javascript' src='https://cdn.firebase.com/js/client/2.3.1/firebase.js'></script>
         <script src="js/jquery.cookie.js"></script>
 
         <script src="js/bootstrap.min.js"></script>
@@ -78,7 +78,7 @@ if ( $_GET['a'] == 'priogawd' )
                 <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
             </div> -->
             <div class="retro_type keep" data-type="keep">
-                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Keep</div>
+                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Keep</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Keep..." />
@@ -89,7 +89,7 @@ if ( $_GET['a'] == 'priogawd' )
             </div>
 
             <div class="retro_type stop" data-type="stop">
-                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Stop</div>
+                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Stop</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Stop..." />
@@ -100,7 +100,7 @@ if ( $_GET['a'] == 'priogawd' )
             </div>
 
             <div class="retro_type start" data-type="start">
-                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Start</div>
+                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Start</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Start..." />
@@ -111,7 +111,7 @@ if ( $_GET['a'] == 'priogawd' )
             </div>
 
             <div class="retro_type more" data-type="more">
-                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>More</div>
+                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>More</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="More..." />
@@ -122,7 +122,7 @@ if ( $_GET['a'] == 'priogawd' )
             </div>
 
             <div class="retro_type less" data-type="less">
-                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-pencil"></span>Less</div>
+                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Less</div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Less..." />

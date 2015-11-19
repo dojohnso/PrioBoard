@@ -62,7 +62,7 @@ if ( !myNotes )
 $(function(){
     $('.navbar-brand').append(' | ' + retroCode)
 
-    $('.add_widget .glyphicon-pencil').on('click',function(e){
+    $('.add_widget .glyphicon-plus').on('click',function(e){
         e.preventDefault();
 
         type = $(this).parent().data('type')
@@ -125,7 +125,7 @@ $(function(){
 
 function drawNotes( snapshot )
 {
-    type = snapshot.name();
+    type = snapshot.key();
     $('.retro_type.'+type+' ul').find('li').remove();
 
     if ( snapshot.val() !== null )
@@ -150,16 +150,27 @@ function removeNote( obj )
 function addNote( type, note )
 {
     var noteRef = notes[type];
-    id = noteRef.push({note:note,upvotes:1});
+    // var newNote = noteRef.push({note:note,upvotes:1},function(err){
+    //     newNote.setPriority(-1)
+    // });
+    noteRef.push().setWithPriority({note:note,upvotes:1},-1);
 
-    myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
+    // get the last (newest) item
+    noteRef.limitToLast(1).once('value',function(snap){
+        for (k in snap.val() )
+        {
+            var newNoteId = k;
+        }
 
-    myNotes.notes.push(id.name())
+        myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
-    myNotes = JSON.stringify(myNotes);
-    sessionStorage[retroCode+'notes'] = myNotes;
+        myNotes.notes.push(newNoteId)
 
-    notes[type].once('value', drawNotes); // need to resync for the delete icon, for now
+        myNotes = JSON.stringify(myNotes);
+        sessionStorage[retroCode+'notes'] = myNotes;
+
+        notes[type].once('value', drawNotes); // need to resync for the delete icon, for now
+    });
 }
 
 function drawNote( type, noteRef, id )
@@ -202,8 +213,16 @@ function drawNote( type, noteRef, id )
 
         var currentVotes;
         noteRef.once("value", function(snap) {
-            currentVotes = typeof snap.val().upvotes == 'undefined' ? 1 : snap.val().upvotes*1;
-            noteRef.update({'upvotes':++currentVotes})
+            noteRef.transaction(
+                function(currentNote)
+                {
+                    return {note:currentNote.note, upvotes: ++currentNote.upvotes || 2}
+                },
+                function (a,b,snap)
+                {
+                    noteRef.setPriority(-1*snap.val().upvotes);
+                }
+            );
         });
     });
 }

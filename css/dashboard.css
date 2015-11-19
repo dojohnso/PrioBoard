@@ -23,7 +23,7 @@ body {
     top:20px;
 }
 
-.add_widget .glyphicon-pencil {
+.add_widget .glyphicon-plus {
     right:15px;
 }
 
@@ -75,6 +75,16 @@ body {
     margin:2px 0 0 0;
 }
 
+.glyphicon {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
 .retro_type ul li .glyphicon.glyphicon-remove {
     position:absolute;
     right:10px;
@@ -113,11 +123,11 @@ body {
 }
 
 .retro_type.more ul li {
-    background:#9b59b6;
+    background:#C560FF;
 }
 .retro_type.more {
-    border: 1px solid #9b59b6;
-    border-bottom: 5px solid #9b59b6;
+    border: 1px solid #C560FF;
+    border-bottom: 5px solid #C560FF;
 }
 
 .retro_type.less ul li {
