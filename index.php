@@ -73,7 +73,8 @@ else if ( isset( $_GET['a'] ) )
                 </div>
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="?new">New Board?</a></li>
+                        <li><a href="?b=new">New Board?</a></li>
+                        <li><a href="?b=feedback">Feedback</a></li>
                         <!-- <li>
                             <form id="code-form" method="get">
                                 <div class="input-group input-group-sm">
