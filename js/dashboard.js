@@ -66,7 +66,7 @@ $(function(){
         e.preventDefault();
 
         type = $(this).parent().data('type')
-        $(this).parents('.retro_type').find('.add_form').toggle(200).find('textarea').focus();
+        $(this).parents('.retro_type').find('.add_form').toggle(200).find('input').focus();
 
         return false;
     });
@@ -92,7 +92,7 @@ $(function(){
 
     $('.add_form').find(':button').on('click',function(){
 
-        var note = $(this).parent().find('textarea').val();
+        var note = $(this).parent().find('input').val();
 
         note = $("<div/>").html( note ).text(); //filter tags
         note = $.trim(note);
@@ -106,7 +106,7 @@ $(function(){
         	addNote( $(this).parents('.retro_type').data('type'), note );
 		}
 
-        $(this).parent().find('textarea').val('').focus();
+        $(this).parent().find('input').val('').focus();
     });
 
     notes = {}
@@ -132,7 +132,7 @@ function drawNotes( snapshot )
     {
         for ( i in snapshot.val() )
         {
-            drawNote(type, snapshot.val()[i].note, i);
+            drawNote(type, snapshot.val()[i], i);
         }
     }
 }
@@ -150,7 +150,7 @@ function removeNote( obj )
 function addNote( type, note )
 {
     var noteRef = notes[type];
-    id = noteRef.push({note:note});
+    id = noteRef.push({note:note,upvotes:1});
 
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
@@ -162,8 +162,11 @@ function addNote( type, note )
     notes[type].once('value', drawNotes); // need to resync for the delete icon, for now
 }
 
-function drawNote( type, note, id )
+function drawNote( type, noteRef, id )
 {
+    var note = noteRef.note;
+    var upvotes = typeof noteRef.upvotes == 'undefined' ? 1 : noteRef.upvotes*1;
+
     myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
 
     var del = '';
@@ -171,7 +174,9 @@ function drawNote( type, note, id )
     {
         del = '<span class="glyphicon glyphicon-remove"></span>';
     }
-    $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+del+note+'</li>');
+
+    var upIcon = '<span class="glyphicon glyphicon-arrow-up">('+upvotes+')</span>';
+    $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+upIcon+del+'<span class="note">'+note+'</span></li>');
 
     $('.retro_type.'+type+' ul li .glyphicon-remove').off().on('mouseup',function(e){
         e.preventDefault();
@@ -180,10 +185,25 @@ function drawNote( type, note, id )
         myNotes = JSON.parse( sessionStorage[retroCode+'notes'] );
         if ( $.inArray( id, myNotes.notes ) > -1 || gAdmin)
         {
-            if ( confirm("Delete the following?\n\n"+$(this).parent().text()) )
+            if ( confirm("Delete the following?\n\n"+$(this).parent().find('span.note').text()) )
             {
                 removeNote($(this).parent());
             }
         }
+    });
+
+    $('.retro_type.'+type+' ul li .glyphicon-arrow-up').off().on('mouseup',function(e){
+        e.preventDefault();
+
+        type = $(this).parents('.retro_type').data('type');
+
+        var id = $(this).parent().attr('id');
+        var noteRef = notes[type].child( id )
+
+        var currentVotes;
+        noteRef.once("value", function(snap) {
+            currentVotes = typeof snap.val().upvotes == 'undefined' ? 1 : snap.val().upvotes*1;
+            noteRef.update({'upvotes':++currentVotes})
+        });
     });
 }
