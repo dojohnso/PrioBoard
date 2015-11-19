@@ -65,7 +65,7 @@ else if ( isset( $_GET['a'] ) )
                 <div class="navbar-header">
                     <a class="navbar-brand" href="?<?= $_SERVER['QUERY_STRING']; ?>">PrioBoard</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="srplusnly">Toggle navigation</span>
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -88,7 +88,7 @@ else if ( isset( $_GET['a'] ) )
 
         <div class="container">
             <!-- <div class="admin-code-box">
-                <label class="srplusnly" for="admin-code">Admin Code</label>
+                <label class="sr-only" for="admin-code">Admin Code</label>
                 <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
             </div> -->
             <div class="retro_type keep" data-type="keep">
