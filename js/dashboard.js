@@ -87,7 +87,15 @@ $(function(){
         e.preventDefault();
 
         type = $(this).parent().data('type')
-        $(this).parents('.retro_type').find('.add_form').toggle(200).find('input').focus();
+        var addForm = $(this).parents('.retro_type').find('.add_form');
+
+        addForm.toggle(200, function()
+        {
+            if ( addForm.is(':visible') )
+            {
+                addForm.find('input').focus();
+            }
+        });
 
         return false;
     });
