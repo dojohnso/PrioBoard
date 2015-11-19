@@ -83,7 +83,7 @@ if ( !myVotes )
 $(function(){
     $('.navbar-brand').append(' | ' + retroCode)
 
-    $('.add_widget .glyphicon-plus').on('click',function(e){
+    $('.add_widget .glyphicon-menu-hamburger').on('click',function(e){
         e.preventDefault();
 
         type = $(this).parent().data('type')
@@ -211,7 +211,7 @@ function drawNote( type, noteRef, id )
     myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
     // if ( ($.inArray( id, myNotes.notes ) == -1 && $.inArray( id, myVotes.votes ) == -1) || gAdmin )
     // {
-        upIcon = '<span class="glyphicon glyphicon-ok">('+upvotes+')</span>';
+        upIcon = '<span class="glyphicon glyphicon-arrow-up">'+upvotes+'</span>';
     // }
 
     $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+upIcon+del+'<span class="note">'+note+'</span></li>');
@@ -225,7 +225,7 @@ function drawNote( type, noteRef, id )
         }
     });
 
-    $('.retro_type.'+type+' ul li .glyphicon-ok').off().on('mouseup',function(e){
+    $('.retro_type.'+type+' ul li .glyphicon-arrow-up').off().on('mouseup',function(e){
         e.preventDefault();
 
         type = $(this).parents('.retro_type').data('type');
@@ -234,7 +234,6 @@ function drawNote( type, noteRef, id )
         var noteRef = notes[type].child( id )
 
         myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
-        console.log(myVotes)
         if ( ($.inArray( id, myNotes.notes ) > -1 || $.inArray( id, myVotes.votes ) > -1)  )
         {
             return false;
@@ -258,8 +257,6 @@ function drawNote( type, noteRef, id )
                         sessionStorage[retroCode+'votes'] = myVotes;
 
                         noteRef.setPriority(-1*snap.val().upvotes);
-
-                        // $('.retro_type.'+type+' ul li#'+snap.key()+' .glyphicon-ok').remove();
                     }
                 }
             );

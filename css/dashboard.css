@@ -23,7 +23,7 @@ body {
     top:20px;
 }
 
-.add_widget .glyphicon-plus {
+.add_widget .glyphicon-menu-hamburger {
     right:15px;
 }
 
@@ -92,7 +92,7 @@ body {
     cursor:pointer;
 }
 
-.retro_type ul li .glyphicon.glyphicon-ok {
+.retro_type ul li .glyphicon.glyphicon-arrow-up {
     float:left;
     cursor:pointer;
     margin:5px 10px 0 0;
