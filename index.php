@@ -1,5 +1,5 @@
 <?php
-$url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
+$url = 'http://' . $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
 if ( $_GET['a'] == 'priogawd' )
 {
     setcookie( 'gAdmin', true );
