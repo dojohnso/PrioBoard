@@ -1,10 +1,7 @@
 body {
-  padding-top: 50px;
-  background:#333;
-}
-
-.admin-code-box {
-    display:none;
+    padding-top: 50px;
+    background:#333;
+    color:#fff;
 }
 
 .add_widget {
@@ -13,8 +10,9 @@ body {
         -ms-user-select: none;
             user-select: none;
     padding:15px 0;
-    background-color: #000;
+    /*background-color: #000;*/
     position: relative;
+    color:#fff;
 }
 
 .add_widget .glyphicon {
@@ -24,28 +22,21 @@ body {
 }
 
 .add_widget .glyphicon-plus {
-    right:15px;
+    right:10px;
 }
 
 .add_widget .glyphicon-chevron-down, .add_widget .glyphicon-chevron-up {
-    position:absolute;
-    cursor:pointer;
-    left:15px;
+    left:10px;
 }
 
 .retro_type {
-    float:left;
+    /*float:left;
     min-height:50px;
     margin:10px 5px;
-    width:216px;
-    color: #fff;
-    text-align: center;
-}
+    width:216px;*/
 
-@media (max-width: 700px) {
-    .retro_type {
-        width:100%;
-    }
+    /*color: #fff;*/
+    text-align: center;
 }
 
 .label {
@@ -70,7 +61,6 @@ body {
 }
 
 .retro_type ul li {
-    background:#aaa;
     overflow:hidden;
     position: relative;
     padding:5px;
@@ -101,46 +91,68 @@ body {
     margin:5px 10px 0 0;
 }
 
-.retro_type.stop ul li {
+.retro_type.red ul li {
     background:#e74c3c;
 }
-.retro_type.stop {
+.retro_type.red .add_widget {
     border: 1px solid #e74c3c;
     border-bottom: 5px solid #e74c3c;
 }
 
-.retro_type.start ul li {
+.retro_type.green ul li {
     background:#2ecc71;
 }
-.retro_type.start {
+.retro_type.green .add_widget {
     border: 1px solid #2ecc71;
     border-bottom: 5px solid #2ecc71;
 }
 
-.retro_type.keep ul li {
+.retro_type.blue ul li {
     background:#3498db;
 }
-.retro_type.keep {
+.retro_type.blue .add_widget {
     border: 1px solid #3498db;
     border-bottom: 5px solid #3498db;
 }
 
-.retro_type.more ul li {
+.retro_type.purple ul li {
     background:#C560FF;
 }
-.retro_type.more {
+.retro_type.purple .add_widget {
     border: 1px solid #C560FF;
     border-bottom: 5px solid #C560FF;
 }
 
-.retro_type.less ul li {
+.retro_type.yellow ul li {
     background:#f1c40f;
 }
-.retro_type.less {
+.retro_type.yellow .add_widget {
     border: 1px solid #f1c40f;
     border-bottom: 5px solid #f1c40f;
 }
 
 #code-form {
     margin-top:10px;
+}
+
+.navbar-ellipses {
+    color: #9D9D9D;
+    position: relative;
+    top: 17px;
+    left: 2px;
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .retro_type {
+        width:100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar-brand {
+        max-width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }

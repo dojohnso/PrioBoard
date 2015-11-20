@@ -1,9 +1,8 @@
 <?php
+$url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
 if ( $_GET['a'] == 'priogawd' )
 {
     setcookie( 'gAdmin', true );
-
-    $url = $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
 
     header( 'location: http://' . $url );
     exit;
@@ -12,10 +11,17 @@ else if ( isset( $_GET['a'] ) )
 {
     setcookie( 'gAdmin', false );
 
-    $url = $_SERVER['HTTP_HOST'].str_replace('?'.$_SERVER['QUERY_STRING'],'',$_SERVER['REQUEST_URI']).'?b='.$_GET['b'];
     header( 'location: http://' . $url );
     exit;
 }
+
+$types = array(
+    'keep' => array( 'color' => 'blue'),
+    'stop' => array( 'color' => 'red'),
+    'start' => array( 'color' => 'green'),
+    'more' => array( 'color' => 'purple'),
+    'less' => array( 'color' => 'yellow'),
+);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -61,9 +67,9 @@ else if ( isset( $_GET['a'] ) )
 
     </script>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="?<?= $_SERVER['QUERY_STRING']; ?>">PrioBoard</a>
+                    <a class="navbar-brand" href="<?= $url; ?>">PrioBoard</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -75,76 +81,43 @@ else if ( isset( $_GET['a'] ) )
                     <ul class="nav navbar-nav">
                         <li><a href="?b=new">New Board?</a></li>
                         <li><a href="?b=feedback">Feedback</a></li>
-                        <!-- <li>
-                            <form id="code-form" method="get">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" placeholder="Enter Code" id="your-code" name="b">
-                                </div>
-                            </form>
-                        </li> -->
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <!-- <div class="admin-code-box">
-                <label class="sr-only" for="admin-code">Admin Code</label>
-                <input type="input" class="form-control" id="admin-code" placeholder="Admin Code">
-            </div> -->
-            <div class="retro_type keep" data-type="keep">
-                <div class="add_widget" data-type="keep"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Keep</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 h3">Your link <small>(click to highlight &amp; copy)</small><input type="text" id="board_code" readonly="readonly" class="form-control" value="<?php echo $url; ?>" ></div>
+            </div>
+            <div class="row">
+
+            <?php
+            $k = 0;
+            foreach ( $types as $type => $config )
+            {
+                ?>
+
+            <div class="retro_type col-md-2 <?php echo floor(12/count($types)); ;?> <?php echo $type; ?> <?php echo $config['color']; ?>" data-type="<?php echo $type; ?>">
+                <div class="add_widget" data-type="<?php echo $type; ?>"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span><?php echo ucwords( $type ); ?></div>
                 <div class="add_form">
                     <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Keep..." />
+                        <input type="text" class="form-control" placeholder="<?php echo ucwords( $type ); ?>..." />
                         <button type="button" class="btn btn-default">Submit</button>
                     </form>
                 </div>
                 <ul><li class="text-center">... loading ...</li></ul>
             </div>
 
-            <div class="retro_type stop" data-type="stop">
-                <div class="add_widget" data-type="stop"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Stop</div>
-                <div class="add_form">
-                    <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Stop..." />
-                        <button type="button" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-                <ul><li class="text-center">... loading ...</li></ul>
-            </div>
+                <?php
+                if ( $k == 5 )
+                {
+                    echo '<div class="clearfix"></div>';
+                }
+                $k++;
+            }
+            ?>
 
-            <div class="retro_type start" data-type="start">
-                <div class="add_widget" data-type="start"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Start</div>
-                <div class="add_form">
-                    <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Start..." />
-                        <button type="button" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-                <ul><li class="text-center">... loading ...</li></ul>
-            </div>
-
-            <div class="retro_type more" data-type="more">
-                <div class="add_widget" data-type="more"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>More</div>
-                <div class="add_form">
-                    <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="More..." />
-                        <button type="button" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-                <ul><li class="text-center">... loading ...</li></ul>
-            </div>
-
-            <div class="retro_type less" data-type="less">
-                <div class="add_widget" data-type="less"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-plus"></span>Less</div>
-                <div class="add_form">
-                    <form onsubmit="$(this).find('button').click();return false;" class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Less..." />
-                        <button type="button" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-                <ul><li class="text-center">... loading ...</li></ul>
             </div>
         </div>
     </body>

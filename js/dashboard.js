@@ -82,7 +82,9 @@ if ( !myVotes )
 }
 
 $(function(){
-    $('.navbar-brand').append(' | ' + retroCode)
+    $('#board_code').on('focus', function(e) {
+        $(this).select()
+    });
 
     $('.add_widget .glyphicon-plus').on('click',function(e){
         e.preventDefault();
@@ -106,13 +108,13 @@ $(function(){
 
         if ( $(this).parents('.retro_type').find('ul:visible').length )
         {
-            $(this).parents('.retro_type').find('ul').slideUp(50);
+            $(this).parents('.retro_type').find('ul').slideUp(150);
             $(this).removeClass( 'glyphicon-chevron-up' );
             $(this).addClass( 'glyphicon-chevron-down' );
         }
         else
         {
-            $(this).parents('.retro_type').find('ul').slideDown(50);
+            $(this).parents('.retro_type').find('ul').slideDown(100);
             $(this).removeClass( 'glyphicon-chevron-down' );
             $(this).addClass( 'glyphicon-chevron-up' );
         }
