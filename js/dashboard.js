@@ -29,7 +29,7 @@ for ( r in refs )
     }
 }
 
-if ( refs.length == 0 || refs == '' || retroCode == 'new' || retroCode == '' )
+if ( refs.length == 0 || refs == '' || refs[0] == '' || retroCode == 'new' || retroCode == '' )
 {
     var newCode = false;
     if ( retroCode == 'new' )
@@ -46,7 +46,7 @@ if ( refs.length == 0 || refs == '' || retroCode == 'new' || retroCode == '' )
         }
         else
         {
-            newCode - true;
+            newCode = true;
         }
     }
 
@@ -58,6 +58,7 @@ if ( refs.length == 0 || refs == '' || retroCode == 'new' || retroCode == '' )
         window.top.location = '?b='+retroCode;
     }
 }
+
 
 var gAdmin = $.cookie('gAdmin');
 
