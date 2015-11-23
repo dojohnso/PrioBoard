@@ -82,12 +82,10 @@ if ( !myVotes )
 }
 
 $(function(){
-    $('#board_code').on('focus', function(e) {
-        $(this).select()
-    });
-
     $('.add_widget .glyphicon-plus').on('click',function(e){
         e.preventDefault();
+
+        if ( boardIsLocked() ) { return; }
 
         type = $(this).parent().data('type')
         var addForm = $(this).parents('.retro_type').find('.add_form');
@@ -106,6 +104,8 @@ $(function(){
     $('.add_widget .glyphicon-chevron-down, .add_widget .glyphicon-chevron-up').on('click',function(e){
         e.preventDefault();
 
+        if ( boardIsLocked() ) { return; }
+
         if ( $(this).parents('.retro_type').find('ul:visible').length )
         {
             $(this).parents('.retro_type').find('ul').slideUp(150);
@@ -122,7 +122,9 @@ $(function(){
         return false;
     });
 
-    $('.add_form').find(':button').on('click',function(){
+    $('.add_form').find(':button').on('click',function()
+    {
+        if ( boardIsLocked() ) { return; }
 
         var note = $(this).parent().find('input').val();
 
@@ -153,7 +155,55 @@ $(function(){
     notes.start.on('value', drawNotes);
     notes.more.on('value', drawNotes);
     notes.less.on('value', drawNotes);
+
+    notes.board_info = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/board_info');
+    notes.board_info.on('value',updateBoard);
+
+    if ( gAdmin )
+    {
+        $('.board-lock').css('cursor','pointer').on('click',function()
+        {
+            if ( $(this).hasClass( 'locked' ) )
+            {
+                unlockBoard();
+            }
+            else
+            {
+                lockBoard();
+            }
+        });
+    }
 });
+
+function lockBoard()
+{
+    notes.board_info.update({locked:1});
+}
+
+function unlockBoard()
+{
+    notes.board_info.update({locked:0});
+}
+
+function updateBoard( snapshot )
+{
+    if ( snapshot.val() !== null )
+    {
+        if ( snapshot.val().locked )
+        {
+            $('.board-lock').removeClass('unlocked').addClass('locked');
+        }
+        else
+        {
+            $('.board-lock').removeClass('locked').addClass('unlocked');
+        }
+    }
+    else
+    {
+        notes.board_info.set({locked:0});
+        $('.board-lock').removeClass('unlocked').addClass('locked');
+    }
+}
 
 function drawNotes( snapshot )
 {
@@ -171,6 +221,8 @@ function drawNotes( snapshot )
 
 function removeNote( obj )
 {
+    if ( boardIsLocked() ) { return; }
+
     var id = $(obj).attr('id');
 
     type = $(obj).parents('.retro_type').data('type');
@@ -181,10 +233,9 @@ function removeNote( obj )
 
 function addNote( type, note )
 {
+    if ( boardIsLocked() ) { return; }
+
     var noteRef = notes[type];
-    // var newNote = noteRef.push({note:note,upvotes:1},function(err){
-    //     newNote.setPriority(-1)
-    // });
     noteRef.push().setWithPriority({note:note,upvotes:1},-1);
 
     // get the last (newest) item
@@ -220,15 +271,14 @@ function drawNote( type, noteRef, id )
     }
 
     myVotes = JSON.parse( sessionStorage[retroCode+'votes'] );
-    // if ( ($.inArray( id, myNotes.notes ) == -1 && $.inArray( id, myVotes.votes ) == -1) || gAdmin )
-    // {
-        upIcon = '<span class="glyphicon glyphicon-arrow-up">'+upvotes+'</span>';
-    // }
+    upIcon = '<span class="glyphicon glyphicon-arrow-up">'+upvotes+'</span>';
 
     $('.retro_type.'+type+' ul').append('<li id="'+id+'">'+upIcon+del+'<span class="note">'+note+'</span></li>');
 
     $('.retro_type.'+type+' ul li .glyphicon-remove').off().on('mouseup',function(e){
         e.preventDefault();
+
+        if ( boardIsLocked() ) { return; }
 
         if ( confirm("Delete the following?\n\n"+$(this).parent().find('span.note').text()) )
         {
@@ -238,6 +288,8 @@ function drawNote( type, noteRef, id )
 
     $('.retro_type.'+type+' ul li .glyphicon-arrow-up').off().on('mouseup',function(e){
         e.preventDefault();
+
+        if ( boardIsLocked() ) { return; }
 
         type = $(this).parents('.retro_type').data('type');
 
@@ -273,4 +325,15 @@ function drawNote( type, noteRef, id )
             );
         });
     });
+}
+
+function boardIsLocked()
+{
+    var locked = false;
+    notes.board_info.once('value',function( snapshot )
+    {
+        locked = snapshot.val().locked;
+    });
+
+    return locked;
 }

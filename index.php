@@ -69,7 +69,8 @@ $types = array(
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?= $url; ?>">PrioBoard</a>
+                    <a class="navbar-brand" href="<?= $url; ?>">PrioBoard | <?php echo $_GET['b']; ?></a>
+                    <span class="glyphicon glyphicon-lock board-lock"></span>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -87,9 +88,6 @@ $types = array(
         </div>
 
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 h3">Your link <small>(click to highlight &amp; copy)</small><input type="text" id="board_code" readonly="readonly" class="form-control" value="<?php echo $url; ?>" ></div>
-            </div>
             <div class="row">
 
             <?php
