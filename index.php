@@ -4,14 +4,14 @@ if ( $_GET['a'] == 'priogawd' )
 {
     setcookie( 'gAdmin', true );
 
-    header( 'location: http://' . $url );
+    header( 'location: ' . $url );
     exit;
 }
 else if ( isset( $_GET['a'] ) )
 {
     setcookie( 'gAdmin', false );
 
-    header( 'location: http://' . $url );
+    header( 'location: ' . $url );
     exit;
 }
 
