@@ -335,5 +335,10 @@ function boardIsLocked()
         locked = snapshot.val().locked;
     });
 
+    if ( gAdmin )
+    {
+        locked = false;
+    }
+
     return locked;
 }
