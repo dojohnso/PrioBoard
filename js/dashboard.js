@@ -201,7 +201,7 @@ function updateBoard( snapshot )
     else
     {
         notes.board_info.set({locked:0});
-        $('.board-lock').removeClass('unlocked').addClass('locked');
+        $('.board-lock').removeClass('locked').addClass('unlocked');
     }
 }
 
