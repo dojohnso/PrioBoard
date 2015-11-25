@@ -104,8 +104,6 @@ $(function(){
     $('.add_widget .glyphicon-chevron-down, .add_widget .glyphicon-chevron-up').on('click',function(e){
         e.preventDefault();
 
-        if ( boardIsLocked() ) { return; }
-
         if ( $(this).parents('.retro_type').find('ul:visible').length )
         {
             $(this).parents('.retro_type').find('ul').slideUp(150);
