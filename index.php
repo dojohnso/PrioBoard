@@ -32,7 +32,7 @@ $types = array(
         <meta name="description" content="">
         <meta name="author" content="">
 
-		<link id="favicon" rel="shortcut icon" href="images/prioboard-star.png" />
+        <link id="favicon" rel="shortcut icon" href="images/prioboard-star.png" />
 
         <title>PrioBoard</title>
 
