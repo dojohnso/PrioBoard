@@ -69,6 +69,7 @@ $types = array(
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <img id="avatar" />
                     <a class="navbar-brand" href="<?= $url; ?>">PrioBoard | <?php echo $_GET['b']; ?></a>
                     <span class="glyphicon glyphicon-lock board-lock"></span>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

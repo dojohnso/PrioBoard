@@ -1,4 +1,6 @@
 var retroCode = '';
+var notes;
+var prioRef;
 
 function retroString()
 {
@@ -58,7 +60,6 @@ if ( refs.length == 0 || refs == '' || refs[0] == '' || retroCode == 'new' || re
         window.top.location = '?b='+retroCode;
     }
 }
-
 
 var gAdmin = $.cookie('gAdmin');
 
@@ -140,6 +141,14 @@ $(function(){
 
         $(this).parent().find('input').val('').focus();
     });
+
+    prioRef = new Firebase("https://dojohnso.firebaseio.com/prioboard");
+
+    var d = new Date();
+    console.log(d.getTime()/1000)
+    console.log($.cookie('userExpires'))
+
+    console.log($.cookie('userExpires')*1 > d.getTime()/1000)
 
     notes = {}
     notes.keep = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/keep');
@@ -339,4 +348,64 @@ function boardIsLocked()
     }
 
     return locked;
+}
+
+function registerUser( email, password )
+{
+    prioRef.createUser({
+        email    : email,
+        password : password
+    }, function(error, userData) {
+        if (error) {
+            console.log("Error creating user:", error);
+        } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+        }
+    });
+}
+
+function loginUser( email, password )
+{
+    prioRef.authWithPassword({
+        email    : email,
+        password : password
+    }, function(error, authData) {
+        if (error) {
+            console.log("Login Failed!", error);
+        } else {
+            console.log("Authenticated successfully with payload:", authData);
+        }
+
+        $('#avatar').attr('src', authData.password.profileImageURL );
+
+        $.cookie('userExpires', authData.expires);
+    } );
+}
+
+function changePassword( email, oldPassword, newPassword )
+{
+    prioRef.changePassword({
+        email       : email,
+        oldPassword : oldPassword,
+        newPassword : newPassword
+    }, function(error) {
+        if (error === null) {
+            console.log("Password changed successfully");
+        } else {
+            console.log("Error changing password:", error);
+        }
+    });
+}
+
+function sendResetPasswordEmail( email )
+{
+    prioRef.resetPassword({
+        email : email
+    }, function(error) {
+        if (error === null) {
+            console.log("Password reset email sent successfully");
+        } else {
+            console.log("Error sending password reset email:", error);
+        }
+    });
 }
