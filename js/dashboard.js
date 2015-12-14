@@ -156,12 +156,14 @@ $(function(){
     notes.start = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/start');
     notes.more = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/more');
     notes.less = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/less');
+    notes.action = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/action');
 
     notes.keep.on('value', drawNotes);
     notes.stop.on('value', drawNotes);
     notes.start.on('value', drawNotes);
     notes.more.on('value', drawNotes);
     notes.less.on('value', drawNotes);
+    notes.action.on('value', drawNotes);
 
     notes.board_info = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/board_info');
     notes.board_info.on('value',updateBoard);

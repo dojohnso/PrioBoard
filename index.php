@@ -21,6 +21,7 @@ $types = array(
     'start' => array( 'color' => 'green'),
     'more' => array( 'color' => 'purple'),
     'less' => array( 'color' => 'yellow'),
+    'action' => array( 'color' => 'white'),
 );
 
 ?><!DOCTYPE html>

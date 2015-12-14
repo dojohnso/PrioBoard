@@ -131,6 +131,14 @@ body {
     border-bottom: 5px solid #f1c40f;
 }
 
+.retro_type.white ul li {
+    background:#ffffff;
+}
+.retro_type.white .add_widget {
+    border: 1px solid #ffffff;
+    border-bottom: 5px solid #ffffff;
+}
+
 #code-form {
     margin-top:10px;
 }
