@@ -89,6 +89,12 @@ $types = array(
             </div>
         </div>
 
+        <div class="container-fluid" id="history">
+            <ol class="breadcrumb">
+              <li>History:</li>
+            </ol>
+        </div>
+
         <div class="container-fluid">
             <div class="row">
 

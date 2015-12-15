@@ -63,9 +63,6 @@ if ( refs.length == 0 || refs == '' || refs[0] == '' || retroCode == 'new' || re
 
 var gAdmin = $.cookie('gAdmin');
 
-
-$.cookie('your_retro', retroCode);
-
 myNotes = sessionStorage[retroCode+'notes'];
 if ( !myNotes )
 {
@@ -83,6 +80,9 @@ if ( !myVotes )
 }
 
 $(function(){
+
+    trackAndDrawHistory( retroCode );
+
     $('.add_widget .glyphicon-plus').on('click',function(e){
         e.preventDefault();
 
@@ -144,11 +144,10 @@ $(function(){
 
     prioRef = new Firebase("https://dojohnso.firebaseio.com/prioboard");
 
-    var d = new Date();
-    console.log(d.getTime()/1000)
-    console.log($.cookie('userExpires'))
-
-    console.log($.cookie('userExpires')*1 > d.getTime()/1000)
+    // var d = new Date();
+    // console.log(d.getTime()/1000)
+    // console.log($.cookie('userExpires'))
+    // console.log($.cookie('userExpires')*1 > d.getTime()/1000)
 
     notes = {}
     notes.keep = new Firebase('https://dojohnso.firebaseio.com/prioboard/'+retroCode+'/keep');
@@ -411,3 +410,31 @@ function sendResetPasswordEmail( email )
         }
     });
 }
+
+function trackAndDrawHistory( retroCode )
+{
+    $.cookie('your_retro', retroCode);
+    var retro_history = $.cookie('retro_history') ? JSON.parse( $.cookie('retro_history') ) : [];
+    retro_history.unshift( retroCode );
+    retro_history = unique(retro_history);
+    retro_history = retro_history.slice(0,10);
+    $.cookie('retro_history', JSON.stringify(retro_history));
+
+    for( b in retro_history )
+    {
+        $('#history .breadcrumb').append('<li><a href="?b=' + retro_history[b] + '">' + retro_history[b] + '</a></li>');
+    }
+
+    $('#history .breadcrumb').find('li:nth-child(2)').addClass('active').html( $('#history .breadcrumb').find('li:nth-child(2) a').html() );
+
+
+}
+
+function unique(list) {
+    var result = [];
+    $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+    });
+    return result;
+}
+
